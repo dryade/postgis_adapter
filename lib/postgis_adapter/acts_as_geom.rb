@@ -20,7 +20,7 @@ module Functions
     #
     def has_geom(*geom)
       cattr_accessor :postgis_geoms
-      self.postgis_geoms = geom[0] # {:columns => column
+      self.postgis_geoms = geom[0].keys.first # {:columns => column }
       send :include, case geom[0].values[0]
         when :point       then  PointFunctions
         when :polygon     then PolygonFunctions

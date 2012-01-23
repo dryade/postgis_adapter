@@ -87,18 +87,32 @@ ActiveRecord::Base.class_eval do
               "#{table_name}.#{connection.quote_column_name(attr)} && ? "
             end
           else
-            attribute_condition("#{table_name}.#{connection.quote_column_name(attr)}", value)
+            # DEPRECATED
+            #attribute_condition("#{table_name}.#{connection.quote_column_name(attr)}", value)
+            quoted_column_name = "#{table_name}.#{connection.quote_column_name(attr)}"
+            case value
+            when nil then puts quoted_column_name; "#{quoted_column_name} IS ?"
+            when Array, ActiveRecord::Associations::AssociationCollection, ActiveRecord::NamedScope::Scope then "#{quoted_column_name} IN (?)"
+            when Range then if argument.exclude_end?
+                              "#{quoted_column_name} >= ? AND #{quoted_column_name} < ?"
+                            else
+                              "#{quoted_column_name} BETWEEN ? AND ?"
+                            end
+            else            
+              "#{quoted_column_name} = ?"
+            end
           end
         else
           sanitize_sql_hash_for_conditions(value, connection.quote_table_name(attr.to_s))
         end
       end.join(' AND ')
-
+      
       replace_bind_variables(conditions, expand_range_bind_variables(attrs.values))
     end
   else
     raise "Spatial Adapter will not work with this version of Rails"
   end
+   
 end
 
 ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.class_eval do
