@@ -92,7 +92,7 @@ ActiveRecord::Base.class_eval do
             quoted_column_name = "#{table_name}.#{connection.quote_column_name(attr)}"
             case value
             when nil then puts quoted_column_name; "#{quoted_column_name} IS ?"
-            when Array, ActiveRecord::Associations::AssociationCollection, ActiveRecord::NamedScope::Scope then "#{quoted_column_name} IN (?)"
+            when Array, ActiveRecord::Associations::CollectionProxy, ActiveRecord::NamedScope::Scope then "#{quoted_column_name} IN (?)"
             when Range then if argument.exclude_end?
                               "#{quoted_column_name} >= ? AND #{quoted_column_name} < ?"
                             else
