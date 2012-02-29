@@ -37,6 +37,11 @@ module Functions
     # rescue ActiveRecord::StatementInvalid => e
     #   nil
     end
+
+    def default_geometry
+      postgis_geoms
+    end
+
   end
 end
 end

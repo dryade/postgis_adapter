@@ -44,7 +44,7 @@ module Functions
 
     tables = on_db.map do |t| {
       :name => t.class.table_name,
-      :column => t.postgis_geoms.keys[0],
+      :column => t.class.default_geometry,
       :uid =>  unique_identifier,
       :primary_key => t.class.primary_key,
       :id => t[:id] }
@@ -107,7 +107,7 @@ module Functions
       GeoRuby::SimpleFeatures::Geometry.from_hex_ewkb(value) rescue value
     end
     rescue Exception => e
-    raise StandardError, e.to_s #+ e.backtrace.inspect
+    raise StandardError, e.to_s + e.backtrace.inspect
   end
 
   # Get a unique ID for tables

@@ -10,7 +10,7 @@ module Functions
       # Returns the closest record
       def closest_to(p, opts = {})
         srid = opts.delete(:srid) || 4326
-        opts.merge!(:order => "ST_Distance(geom, GeomFromText('POINT(#{p.x} #{p.y})', #{srid}))")
+        opts.merge!(:order => "ST_Distance(#{default_geometry}, GeomFromText('POINT(#{p.x} #{p.y})', #{srid}))")
         find(:first, opts)
       end
 
