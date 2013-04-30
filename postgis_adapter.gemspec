@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files  = ['README.rdoc']
 
   spec.add_dependency 'nofxx-georuby'
+  spec.add_dependency 'rake' 
 
   spec.description = 'Execute PostGIS functions on Active Record'
 end
