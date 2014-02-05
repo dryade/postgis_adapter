@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name     = 'dr-postgis_adapter'
-  spec.version  = '0.8.2'
+  spec.version  = '0.8.3'
   spec.authors  = ['Marcos Piccinini', 'Luc Donnet', 'Marc Florisson']
   spec.summary  = 'PostGIS Adapter for Active Record'
   spec.email    = 'x@nofxx.com, luc.donnet@free.fr, mflorisson@gmail.com'
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files  = ['README.rdoc']
 
   spec.add_dependency 'nofxx-georuby'
-  spec.add_dependency 'rake' 
+  spec.add_dependency 'rake'
 
   spec.description = 'Execute PostGIS functions on Active Record'
 end
