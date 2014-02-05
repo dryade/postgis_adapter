@@ -89,7 +89,7 @@ ActiveRecord::Base.class_eval do
                             else
                               "#{quoted_column_name} BETWEEN ? AND ?"
                             end
-            else            
+            else
               "#{quoted_column_name} = ?"
             end
           end
@@ -97,13 +97,13 @@ ActiveRecord::Base.class_eval do
           sanitize_sql_hash_for_conditions(value, connection.quote_table_name(attr.to_s))
         end
       end.join(' AND ')
-      
+
       replace_bind_variables(conditions, expand_range_bind_variables(attrs.values))
     end
   else
     raise "Spatial Adapter will not work with this version of Rails"
   end
-   
+
 end
 
 ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.class_eval do
@@ -226,7 +226,7 @@ ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.class_eval do
   def add_index(table_name, column_name, options = {})
     index_name = options[:name] || index_name(table_name,:column => Array(column_name))
     if options[:spatial]
-      execute "CREATE INDEX #{index_name} ON #{table_name} USING GIST (#{Array(column_name).join(", ")} GIST_GEOMETRY_OPS)"
+      execute "CREATE INDEX #{index_name} ON #{table_name} USING GIST (#{Array(column_name).join(", ")} )"
     else
       super
     end
