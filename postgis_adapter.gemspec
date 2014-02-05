@@ -1,9 +1,9 @@
 Gem::Specification.new do |spec|
   spec.name     = 'dr-postgis_adapter'
   spec.version  = '0.8.1'
-  spec.authors  = ['Marcos Piccinini']
+  spec.authors  = ['Marcos Piccinini', 'Luc Donnet', 'Marc Florisson']
   spec.summary  = 'PostGIS Adapter for Active Record'
-  spec.email    = 'x@nofxx.com'
+  spec.email    = 'x@nofxx.com, luc.donnet@free.fr, mflorisson@gmail.com'
   spec.homepage = 'http://github.com/nofxx/postgis_adapter'
 
   spec.rdoc_options = ['--charset=UTF-8']
