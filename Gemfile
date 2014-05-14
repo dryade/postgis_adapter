@@ -4,7 +4,7 @@ source "http://rubygems.org"
 gemspec
 
 platforms :jruby do
-  gem 'activerecord-jdbcpostgresql-adapter', :git => 'git://github.com/dryade/activerecord-jdbc-adapter.git'
+  gem 'activerecord-jdbcpostgresql-adapter'
   gem 'jruby-openssl'
 end
 
